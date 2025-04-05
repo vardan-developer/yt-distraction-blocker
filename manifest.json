@@ -1,0 +1,56 @@
+{
+    "manifest_version": 3,
+    "name": "Youtube Intentor",
+    "version": "1.0",
+    "description": "Interventions to reduce youtube usage over browser",
+    "background": {
+        "service_worker": "background/background.js",
+        "type": "module"
+    },
+    "permissions": ["storage", "scripting", "activeTab", "alarms"],
+    "host_permissions": ["https://www.youtube.com/*", "http://172.105.54.24:3000/*"],
+    "content_scripts": [
+        {
+            "matches": ["https://www.youtube.com/*"],
+            "exclude_matches": ["https://www.youtube.com/@*", "https://www.youtube.com/results*"],
+            "js": ["/loader_scripts/loader_home.js"], 
+            "css": ["/styles/basic.css"]
+        },
+        {
+            "matches": ["https://www.youtube.com/*"],
+            "js": ["/loader_scripts/loader_all.js"], 
+            "css": ["/styles/basic.css"]
+        },
+        {
+            "matches": ["https://www.youtube.com/shorts/*"],
+            "js": ["/loader_scripts/loader_all.js", "/loader_scripts/loader_shorts.js"], 
+            "css": ["/styles/basic.css"]
+        },
+        {
+            "matches": ["https://www.youtube.com/watch?*"],
+            "js": ["/loader_scripts/loader_watch.js"],
+            "css": ["/styles/basic.css"]
+        },
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "loader_scripts/loader_pause_video.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "web_accessible_resources": [{
+        "resources": [
+            "scripts/utils.js",
+            "scripts/home.js",
+            "scripts/all.js"
+        ],
+        "matches": ["https://www.youtube.com/*"]
+    }],
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": true
+    }
+}

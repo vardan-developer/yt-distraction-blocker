@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Extension Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <h1>YouTube Intentor Settings</h1>
+
+  <div class="option-container">
+    <!-- Blocking On or Off -->
+    <div class="option-row">
+      <div>
+        <div class="option-label">Enable YouTube Blocking</div>
+        <div class="option-description">When enabled, YouTube usage will be limited based on your settings</div>
+      </div>
+      <label class="switch">
+        <input type="checkbox" id="blockingSwitch">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="option-container">
+    <!-- Usage Time Limit per day -->
+    <div class="option-row">
+      <div>
+        <div class="option-label">Daily Usage Time Limit</div>
+        <div class="option-description">Maximum number of minutes you can spend on YouTube each day</div>
+      </div>
+      <input type="number" id="usageTimeLimit" placeholder="Minutes" min="1" max="1440">
+    </div>
+    <button id="saveUsageLimit">Save Time Limit</button>
+  </div>
+
+  <!-- Progress bar for delays -->
+  <div id="progressContainer" class="hidden">
+    <p id="statusMessage"></p>
+    <div class="progress-bar-container">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+    <p id="timeRemaining"></p>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html> 
